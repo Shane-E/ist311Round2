@@ -14,7 +14,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
     JLabel instructionsText;
     
     public SettingsPanel(Game g){
-        
+        game = g;
     }
 
     public void actionPerformed(ActionEvent e) {

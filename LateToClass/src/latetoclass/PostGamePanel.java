@@ -12,7 +12,7 @@ public class PostGamePanel extends JPanel implements ActionListener{
     JButton restartButton, changeSettingsButton;
     
     public PostGamePanel(Game g){
-        
+        game = g;
     }
     
     public void actionPerformed(ActionEvent e) {
