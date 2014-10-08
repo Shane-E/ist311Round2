@@ -1,11 +1,13 @@
 package latetoclass;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel extends JPanel{
+public class GamePanel extends JPanel implements KeyListener{
     Game game;
     Timer gameLoop;
     int timeLeftInMilliseconds;
@@ -23,5 +25,17 @@ public class GamePanel extends JPanel{
     
     void startGame(){
         
+    }
+
+    public void keyTyped(KeyEvent e) {
+        //Action
+    }
+
+    public void keyPressed(KeyEvent e) {
+        //Action
+    }
+
+    public void keyReleased(KeyEvent e) {
+        //Action
     }
 }

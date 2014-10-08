@@ -1,6 +1,8 @@
 package latetoclass;
 
-public class Game {
+import javax.swing.JFrame;
+
+public class Game extends JFrame{
     final int WINTER_SEASON, SPRING_SEASON, SUMMER_SEASON, FALL_SEASON, 
             BOY_PLAYER, GIRL_PLAYER, EASY_DIFFICULTY, MEDIUM_DIFFICULTY, 
             HARD_DIFFICULTY;
