@@ -12,7 +12,8 @@ public class Game extends JFrame{
     GamePanel gp;
     
     public Game(){
-        super("Round 2");
+        super("Late To Class");
+        gp = new GamePanel();
         
         gp = new GamePanel();
         getContentPane().setLayout(new BorderLayout());
@@ -23,9 +24,9 @@ public class Game extends JFrame{
         
         
         getContentPane().setLayout(new BorderLayout());
-	//getContentPane().add(*InsertPanel*,"Center");
+	getContentPane().add(gp,"Center");
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
-	setSize (640, 480);
+	setSize (1024, 768);
         setVisible(true);
         
         SUMMER_SEASON = 0;

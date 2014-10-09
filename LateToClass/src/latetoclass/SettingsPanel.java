@@ -13,11 +13,16 @@ public class SettingsPanel extends JPanel implements ActionListener{
             boyButton, girlButton;
     JLabel instructionsText;
     
-    public SettingsPanel(Game g){
-        game = g;
+    public SettingsPanel(){
+        playGame = new JButton("Play");
+        
     }
 
     public void actionPerformed(ActionEvent e) {
-        //Action
+        Object obj = e.getSource();
+        
+        if(obj == playGame){
+            game.gp.startGame();
+        }
     }
 }
