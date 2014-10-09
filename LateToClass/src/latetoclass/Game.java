@@ -9,9 +9,18 @@ public class Game extends JFrame{
             BOY_PLAYER, GIRL_PLAYER, EASY_DIFFICULTY, MEDIUM_DIFFICULTY, 
             HARD_DIFFICULTY;
     int currentSeason, currentPlayer, currentDifficulty;
+    GamePanel gp;
     
     public Game(){
         super("Round 2");
+        
+        gp = new GamePanel();
+        getContentPane().setLayout(new BorderLayout());
+	getContentPane().add(gp,"Center");
+	setDefaultCloseOperation(EXIT_ON_CLOSE);
+	setSize (640, 480);
+        setVisible(true);
+        
         
         getContentPane().setLayout(new BorderLayout());
 	//getContentPane().add(*InsertPanel*,"Center");
