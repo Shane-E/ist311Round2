@@ -10,18 +10,12 @@ public class Game extends JFrame{
             HARD_DIFFICULTY;
     int currentSeason, currentPlayer, currentDifficulty;
     GamePanel gp;
+    SettingsPanel sp;
     
     public Game(){
         super("Late To Class");
         gp = new GamePanel();
-        
-        gp = new GamePanel();
-        getContentPane().setLayout(new BorderLayout());
-	getContentPane().add(gp,"Center");
-	setDefaultCloseOperation(EXIT_ON_CLOSE);
-	setSize (640, 480);
-        setVisible(true);
-        
+        sp = new SettingsPanel();
         
         getContentPane().setLayout(new BorderLayout());
 	getContentPane().add(gp,"Center");

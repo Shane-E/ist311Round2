@@ -1,6 +1,5 @@
 package latetoclass;
 
-import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -13,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements KeyListener{
-    SettingsPanel sp;
+    //SettingsPanel sp;
     Timer gameLoop;
     int timeLeftInMilliseconds;
     final int STARTING_TIME_IN_MILLISECONDS, REFRESH_TIME_IN_MILLISECONDS;
@@ -24,23 +23,24 @@ public class GamePanel extends JPanel implements KeyListener{
     Enemy[] enemiesMovingDown;
     Player player;
     JButton gamePiece;
+    ImageIcon water;
     
     public GamePanel(){
         background = new ImageIcon("images/bg_summer.png");
         background1 = background.getImage();
-        setLayout(new BorderLayout());
-        sp = new SettingsPanel();
-        sp.setLayout(new GridLayout(2,2));
-        add(sp,"South");
-        sp.add(sp.playGame);
+        //sp = new SettingsPanel();
+        //sp.setLayout(new GridLayout(2,2));
+        //add(sp,"South");
+        //sp.add(sp.playGame);
 
         STARTING_TIME_IN_MILLISECONDS = 0;
         REFRESH_TIME_IN_MILLISECONDS = 0;
         
         //creates the game piece and adds it to the JPanel
-        ImageIcon water = new ImageIcon("images/boy.png");
+        water = new ImageIcon("images/boy.png");
         gamePiece = new JButton(water);
         add(gamePiece);
+        gamePiece.addKeyListener(this);
        
     }
     
@@ -63,13 +63,21 @@ public class GamePanel extends JPanel implements KeyListener{
         int newY = 0;
         int newX = 0;
         
-        if(e.getKeyCode() == KeyEvent.VK_KP_UP) {
+        if(e.getKeyCode() == KeyEvent.VK_UP) {
+            newY = currentY - 10;
+            gamePiece.setLocation(currentX, newY);
+        }
+        if(e.getKeyCode() == KeyEvent.VK_DOWN) {
             newY = currentY + 10;
             gamePiece.setLocation(currentX, newY);
         }
-        if(e.getKeyCode() == KeyEvent.VK_KP_DOWN) {
-            newY = currentY - 10;
-            gamePiece.setLocation(currentX, newY);
+        if(e.getKeyCode() == KeyEvent.VK_LEFT){
+            newX = currentX - 10;
+            gamePiece.setLocation(newX, currentY);
+        }
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+            newX = currentX + 10;
+            gamePiece.setLocation(newX, currentY);
         }
     }
 
