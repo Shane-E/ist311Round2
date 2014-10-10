@@ -10,12 +10,10 @@ public class Game extends JFrame{
             HARD_DIFFICULTY;
     int currentSeason, currentPlayer, currentDifficulty;
     GamePanel gp;
-    SettingsPanel sp;
     
     public Game(){
         super("Late To Class");
         gp = new GamePanel();
-        sp = new SettingsPanel();
         
         getContentPane().setLayout(new BorderLayout());
 	getContentPane().add(gp,"Center");
@@ -27,23 +25,19 @@ public class Game extends JFrame{
         SPRING_SEASON = 1;
         FALL_SEASON = 2;
         WINTER_SEASON = 3; 
-        BOY_PLAYER = 1;
-        GIRL_PLAYER = 2;
+        BOY_PLAYER = 0;
+        GIRL_PLAYER = 1;
         EASY_DIFFICULTY = 0;
         MEDIUM_DIFFICULTY = 1;
         HARD_DIFFICULTY = 2;
+        
+        //Default Values
+        currentPlayer = 0;
+        currentSeason = 0;
     }
     
     void setSeason(int season){
-        if (season == 0){
-            currentSeason = 0;
-        }else if (season == 1){
-            currentSeason = 1;
-        }else if (season == 2){
-            currentSeason = 2;
-        }else if (season == 3){
-            currentSeason = 3;
-        }
+        currentSeason = season;
     }
     
     void setDifficulty(int difficulty){
@@ -51,7 +45,7 @@ public class Game extends JFrame{
     }
     
     void setPlayer(int player){
-        
+        currentPlayer = player;
     }
     
     int getSeason(){

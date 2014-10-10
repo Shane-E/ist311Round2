@@ -6,8 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class SettingsPanel extends JPanel implements ActionListener{
-    Game game;
+public class SettingsPanel extends JPanel{
     JButton playGame, winterButton, fallButton, springButton, summerButton, 
             easyDifficultyButton, mediumDifficultyButton, hardDifficultyButton, 
             boyButton, girlButton;
@@ -15,14 +14,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
     
     public SettingsPanel(){
         playGame = new JButton("Play");
-        
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        Object obj = e.getSource();
-        
-        if(obj == playGame){
-            game.gp.startGame();
-        }
+        boyButton = new JButton("Boy");
+        girlButton = new JButton("Girl");
     }
 }
