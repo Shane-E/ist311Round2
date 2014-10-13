@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener{
+    Game game;
     SettingsPanel sp;
     Timer gameLoop;
     int timeLeftInMilliseconds;
@@ -27,14 +28,19 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     Player gamePiece;
     ImageIcon water;
     
-    /*Constants
+    //Constants
     final int WINTER_SEASON, SPRING_SEASON, SUMMER_SEASON, FALL_SEASON, 
             BOY_PLAYER, GIRL_PLAYER, EASY_DIFFICULTY, MEDIUM_DIFFICULTY, 
             HARD_DIFFICULTY;
-    int currentSeason, currentPlayer, currentDifficulty;*/
+    int currentSeason, currentPlayer, currentDifficulty;
     
     public GamePanel(){
-        /*SUMMER_SEASON = 0;
+        super();
+        setLayout(null);
+        
+        sp = new SettingsPanel();
+        
+        SUMMER_SEASON = 0;
         SPRING_SEASON = 1;
         FALL_SEASON = 2;
         WINTER_SEASON = 3; 
@@ -43,41 +49,60 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         EASY_DIFFICULTY = 0;
         MEDIUM_DIFFICULTY = 1;
         HARD_DIFFICULTY = 2;
+        
         //Default Values
         currentPlayer = 0;
-        currentSeason = 0;*/
+        currentSeason = 0;
         
         STARTING_TIME_IN_MILLISECONDS = 0;
         REFRESH_TIME_IN_MILLISECONDS = 0;
-        //background = new ImageIcon("images/bg_summer.png");
-        //background1 = background.getImage();
-        setLayout(new BorderLayout());
-        sp = new SettingsPanel();
-        sp.setLayout(new GridLayout(2,2));
         
         //creates the game piece and adds it to the JPanel
         //water = new ImageIcon("images/boy.png");
-        gamePiece = new Player();
+        //JButton p1 = new JButton(water);
+        
+        background = new ImageIcon("images/bg_summer.png");
+        background1 = background.getImage();
         
         //Add components to game panel
-        add(sp,"South");
-        sp.add(sp.playGame);
-        sp.add(sp.boyButton);
-        sp.add(sp.girlButton);
+        add(sp);
         
         sp.playGame.addActionListener(this);
         sp.boyButton.addActionListener(this);
         sp.girlButton.addActionListener(this);
-        gamePiece.player.addKeyListener(this);
+        sp.winterButton.addActionListener(this);
+        sp.fallButton.addActionListener(this);
+        sp.springButton.addActionListener(this);
+        sp.summerButton.addActionListener(this);
+        repaint();
     }
     
     public void paintComponent(Graphics g){
-        //super.paintComponent(g);
-        //g.drawImage(background1, 0, 0, this);
+        super.paintComponent(g);
+        g.drawImage(background1, 0, 0, this);
     }
     
     void startGame(){
+        //background = new ImageIcon("images/bg_summer.png");
+        //background1 = background.getImage();
         
+        if(currentPlayer == 0){
+            gamePiece.image = new ImageIcon("images/boy.png");
+            gamePiece.image1 = gamePiece.image.getImage();
+            gamePiece.speed = 15;
+            gamePiece.width = 20;
+            gamePiece.height = 15;
+        }else if(currentPlayer == 1){
+            gamePiece.image = new ImageIcon("images/girl.png");
+            gamePiece.image1 = gamePiece.image.getImage();
+            gamePiece.speed = 10;
+            gamePiece.width = 15;
+            gamePiece.height = 10;
+        }
+        add(gamePiece.player);
+        gamePiece.player.addKeyListener(this);
+        revalidate();
+        repaint();
     }
 
     public void keyTyped(KeyEvent e) {
@@ -119,12 +144,36 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             startGame();
         }
         if(obj == sp.boyButton){
-            gamePiece.game.setPlayer(0);
-            add(gamePiece.player);
+            gamePiece = new Player();
+            gamePiece.image = new ImageIcon("images/boy.png");
+            gamePiece.image1 = gamePiece.image.getImage();
+            currentPlayer = 0;
         }
         if(obj == sp.girlButton){
-            gamePiece.game.setPlayer(1);
-            add(gamePiece.player);
+            gamePiece = new Player();
+            gamePiece.image = new ImageIcon("images/girl.png");
+            gamePiece.image1 = gamePiece.image.getImage();
+            currentPlayer = 1;
+        }
+        if(obj == sp.winterButton){
+            background = new ImageIcon("images/bg_winter.png");
+            background1 = background.getImage();
+            repaint();
+        }
+        if(obj == sp.fallButton){
+            background = new ImageIcon("images/bg_fall.png");
+            background1 = background.getImage();
+            repaint();
+        }
+        if(obj == sp.springButton){
+            background = new ImageIcon("images/bg_spring.png");
+            background1 = background.getImage();
+            repaint();
+        }
+        if(obj == sp.summerButton){
+            background = new ImageIcon("images/bg_summer.png");
+            background1 = background.getImage();
+            repaint();
         }
     }
 }
