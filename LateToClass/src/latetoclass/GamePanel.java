@@ -77,6 +77,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         
         //Add components to game panel
         add(sp);
+        add(sp.instructionsText);
         
         sp.playGame.addActionListener(this);
         sp.boyButton.addActionListener(this);

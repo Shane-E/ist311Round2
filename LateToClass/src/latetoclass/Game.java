@@ -33,7 +33,7 @@ public class Game extends JFrame{
 	getContentPane().add(gp, "Center");
         getContentPane().add(sp, "South");
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
-	setSize (1024, 768);
+	setSize (1024, 860);
         setVisible(true);
         
         /*
