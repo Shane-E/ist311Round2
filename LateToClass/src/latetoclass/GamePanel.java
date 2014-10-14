@@ -26,6 +26,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     Image background1;
     Enemy[] enemiesMovingUp;
     Enemy[] enemiesMovingDown;
+<<<<<<< HEAD
 
 
     
@@ -44,6 +45,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     Player average1;
     Player average2;
 
+=======
+    Player gamePiece;
+>>>>>>> parent of 28da17b... Major Improvements
     ImageIcon water;
     
     //Constants
@@ -87,27 +91,13 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         add(sp);
         add(sp.instructionsText);
         
-        add(playGame);
-        playGame.setBounds(0, 50, 100, 50);
-        add(boyButton);
-        boyButton.setBounds(0, 100, 100, 50);
-        add(girlButton);
-        girlButton.setBounds(0, 150, 100, 50);
-        add(winterButton);
-        winterButton.setBounds(0, 200, 100, 50);
-        add(fallButton);
-        fallButton.setBounds(0, 250, 100, 50);
-        add(springButton);
-        springButton.setBounds(0, 300, 100, 50);
-        add(summerButton);
-        summerButton.setBounds(0, 350, 100, 50);
-        playGame.addActionListener(this);
-        boyButton.addActionListener(this);
-        girlButton.addActionListener(this);
-        winterButton.addActionListener(this);
-        fallButton.addActionListener(this);
-        springButton.addActionListener(this);
-        summerButton.addActionListener(this);
+        sp.playGame.addActionListener(this);
+        sp.boyButton.addActionListener(this);
+        sp.girlButton.addActionListener(this);
+        sp.winterButton.addActionListener(this);
+        sp.fallButton.addActionListener(this);
+        sp.springButton.addActionListener(this);
+        sp.summerButton.addActionListener(this);
         repaint();
         
 
@@ -117,9 +107,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         super.paintComponent(g);
         g.drawImage(background1, 0, 0, this);
         ImageIcon water = new ImageIcon("images/boy.png");
-        //gamePiece.player = new JButton(water);
-        // gamePiece.player.setBounds(100, 100, 200, 200);
-        //add(gamePiece.player);
+        //gamePiece = new JButton(water);
+        //gamePiece.setBounds(100, 100, 200, 200);
+        //add(gamePiece);
         addKeyListener(this);
     }
     
@@ -127,6 +117,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         //background = new ImageIcon("images/bg_summer.png");
         //background1 = background.getImage();
         
+<<<<<<< HEAD
 
         
 
@@ -135,6 +126,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         gameLoop.addActionListener(this);
 
         
+=======
+>>>>>>> parent of 28da17b... Major Improvements
         if(currentPlayer == 0){
             gamePiece.image = new ImageIcon("images/boy.png");
             gamePiece.image1 = gamePiece.image.getImage();
@@ -148,14 +141,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             gamePiece.width = 15;
             gamePiece.height = 10;
         }
-        
-        //gamePiece.player = new JButton(water);
-        gamePiece.player.setBounds(100, 100, 50, 50);       
         add(gamePiece.player);
-        
-        //add(gamePiece.player);
-        //gamePiece.player.addKeyListener(this);
         gamePiece.player.addKeyListener(this);
+<<<<<<< HEAD
 
         gamePiece.player.setFocusable(true);
         //setFocus(gamePiece.player);
@@ -187,13 +175,14 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         add(average2.player);
 
         
+=======
+>>>>>>> parent of 28da17b... Major Improvements
         revalidate();
         repaint();
     }
 
     public void keyTyped(KeyEvent e) {
         //Action
-        System.out.println("hey");
     }
 
     public void keyPressed(KeyEvent e) {
@@ -204,26 +193,20 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         
         if(e.getKeyCode() == KeyEvent.VK_UP) {
             newY = currentY - 10;
-            System.out.println("up");
             gamePiece.player.setLocation(currentX, newY);
         }
         if(e.getKeyCode() == KeyEvent.VK_DOWN) {
             newY = currentY + 10;
-            System.out.println("down");
             gamePiece.player.setLocation(currentX, newY);
         }
         if(e.getKeyCode() == KeyEvent.VK_LEFT){
             newX = currentX - 10;
-            System.out.println("left");
             gamePiece.player.setLocation(newX, currentY);
         }
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
             newX = currentX + 10;
-            System.out.println("right");
             gamePiece.player.setLocation(newX, currentY);
         }
-        //repaint();
-        this.setFocusable(true);
     }
 
     public void keyReleased(KeyEvent e) {
@@ -233,38 +216,37 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         
-        if(obj == playGame){
-            System.out.println("game started");
+        if(obj == sp.playGame){
             startGame();
         }
-        if(obj == boyButton){
+        if(obj == sp.boyButton){
             gamePiece = new Player();
             gamePiece.image = new ImageIcon("images/boy.png");
             gamePiece.image1 = gamePiece.image.getImage();
             currentPlayer = 0;
         }
-        if(obj == girlButton){
+        if(obj == sp.girlButton){
             gamePiece = new Player();
             gamePiece.image = new ImageIcon("images/girl.png");
             gamePiece.image1 = gamePiece.image.getImage();
             currentPlayer = 1;
         }
-        if(obj == winterButton){
+        if(obj == sp.winterButton){
             background = new ImageIcon("images/bg_winter.png");
             background1 = background.getImage();
             repaint();
         }
-        if(obj == fallButton){
+        if(obj == sp.fallButton){
             background = new ImageIcon("images/bg_fall.png");
             background1 = background.getImage();
             repaint();
         }
-        if(obj == springButton){
+        if(obj == sp.springButton){
             background = new ImageIcon("images/bg_spring.png");
             background1 = background.getImage();
             repaint();
         }
-        if(obj == summerButton){
+        if(obj == sp.summerButton){
             background = new ImageIcon("images/bg_summer.png");
             background1 = background.getImage();
             repaint();

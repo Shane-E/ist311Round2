@@ -18,13 +18,19 @@ public class Game extends JFrame{
         gp = new GamePanel();
         pgp = new PostGamePanel();
         sp = new SettingsPanel();
+
+        getContentPane().setLayout(new BorderLayout());
+	getContentPane().add(gp,"Center");
+	setDefaultCloseOperation(EXIT_ON_CLOSE);
+	setSize (640, 480);
+        setVisible(true);
         gp.setFocusable(true);
         
         getContentPane().setLayout(new BorderLayout());
 	getContentPane().add(gp, "Center");
         getContentPane().add(sp, "South");
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
-	setSize (1024,600);
+	setSize (1024, 860);
         setVisible(true);
         
         /*
