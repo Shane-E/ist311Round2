@@ -18,7 +18,6 @@ public class Game extends JFrame{
         gp = new GamePanel();
         pgp = new PostGamePanel();
         sp = new SettingsPanel();
-        gp.setFocusable(true);
         
         getContentPane().setLayout(new BorderLayout());
 	getContentPane().add(gp, "Center");
@@ -26,6 +25,7 @@ public class Game extends JFrame{
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setSize (1024,600);
         setVisible(true);
+        gp.setFocusable(true);
         
         /*
         SUMMER_SEASON = 0;
