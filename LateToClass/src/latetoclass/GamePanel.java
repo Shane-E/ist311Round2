@@ -26,8 +26,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     Image background1;
     Enemy[] enemiesMovingUp;
     Enemy[] enemiesMovingDown;
-<<<<<<< HEAD
-    Player gamePiece = new Player();
+
+
     
     JButton playGame = new JButton("Play");
     JButton boyButton = new JButton("Boy");
@@ -37,13 +37,13 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     JButton springButton = new JButton("Spring");
     JButton summerButton = new JButton("Summer");
     
-=======
+
     Player gamePiece;
     Player texter1;
     Player texter2;
     Player average1;
     Player average2;
->>>>>>> origin/master
+
     ImageIcon water;
     
     //Constants
@@ -109,6 +109,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         springButton.addActionListener(this);
         summerButton.addActionListener(this);
         repaint();
+        
+
     }
     
     public void paintComponent(Graphics g){
@@ -125,13 +127,13 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         //background = new ImageIcon("images/bg_summer.png");
         //background1 = background.getImage();
         
-<<<<<<< HEAD
+
         
-=======
+
         //starts the gameLoop timer
         gameLoop.start();
         gameLoop.addActionListener(this);
->>>>>>> origin/master
+
         
         if(currentPlayer == 0){
             gamePiece.image = new ImageIcon("images/boy.png");
@@ -154,10 +156,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         //add(gamePiece.player);
         //gamePiece.player.addKeyListener(this);
         gamePiece.player.addKeyListener(this);
-<<<<<<< HEAD
+
         gamePiece.player.setFocusable(true);
         //setFocus(gamePiece.player);
-=======
+
         
         //adds the first texter obstacle
         texter1.image = new ImageIcon("images/texter.png");
@@ -183,7 +185,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         average2.width = 20;
         average2.height = 15;
         add(average2.player);
->>>>>>> origin/master
+
         
         revalidate();
         repaint();
@@ -269,6 +271,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         }
         if(obj == gameLoop){
             //move texter and average obstacles back and forth
+            repaint();
         }
     }
 }
