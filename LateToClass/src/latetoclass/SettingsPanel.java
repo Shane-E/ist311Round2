@@ -1,6 +1,5 @@
 package latetoclass;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -25,15 +24,19 @@ public class SettingsPanel extends JPanel{
         instructionsText = new JLabel("Select your player and difficulty. "
                 + "Use the arrow keys to move your character. Avoid other people "
                 + "and texters. Make it to Willard building without embarassing yourself.");
+<<<<<<< HEAD
 
         instructionsText.setBounds(0,this.getHeight(),1024,50);
+=======
+        instructionsText.setBounds(0,750,1024,50);
+>>>>>>> FETCH_HEAD
         
-        /*add(playGame);
+        add(playGame);
         add(boyButton);
         add(girlButton);
         add(winterButton);
         add(fallButton);
         add(springButton);
-        add(summerButton);*/
+        add(summerButton);
     }
 }
