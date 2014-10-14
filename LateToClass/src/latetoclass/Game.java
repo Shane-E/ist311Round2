@@ -16,18 +16,15 @@ public class Game extends JFrame{
     public Game(){
         super("Late To Class");
         gp = new GamePanel();
-<<<<<<< Updated upstream
         pgp = new PostGamePanel();
         sp = new SettingsPanel();
-=======
+
         getContentPane().setLayout(new BorderLayout());
 	getContentPane().add(gp,"Center");
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setSize (640, 480);
         setVisible(true);
         gp.setFocusable(true);
-        
->>>>>>> Stashed changes
         
         getContentPane().setLayout(new BorderLayout());
 	getContentPane().add(gp, "Center");

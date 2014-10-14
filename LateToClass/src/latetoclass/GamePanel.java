@@ -1,15 +1,12 @@
 package latetoclass;
 
-<<<<<<< Updated upstream
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-=======
 import java.awt.Color;
->>>>>>> Stashed changes
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
@@ -39,8 +36,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     int currentSeason, currentPlayer, currentDifficulty;
     
     public GamePanel(){
-<<<<<<< Updated upstream
         super();
+        //gives the panel a null layout so the button can be moved around the screen
         setLayout(null);
         
         sp = new SettingsPanel();
@@ -58,17 +55,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         //Default Values
         currentPlayer = 0;
         currentSeason = 0;
-        
-=======
-        //gives the panel a null layout so the button can be moved around the screen
-        setLayout(null);
-        
->>>>>>> Stashed changes
+                
         STARTING_TIME_IN_MILLISECONDS = 0;
         REFRESH_TIME_IN_MILLISECONDS = 0;
         
         //creates the game piece and adds it to the JPanel
-<<<<<<< Updated upstream
         //water = new ImageIcon("images/boy.png");
         //JButton p1 = new JButton(water);
         
@@ -92,15 +83,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(background1, 0, 0, this);
-=======
         ImageIcon water = new ImageIcon("images/boy.png");
-        gamePiece = new JButton(water);
-        gamePiece.setBounds(100, 100, 200, 200);
-        add(gamePiece);
+        //gamePiece = new JButton(water);
+        //gamePiece.setBounds(100, 100, 200, 200);
+        //add(gamePiece);
         addKeyListener(this);
-       
-       
->>>>>>> Stashed changes
     }
     
     void startGame(){
@@ -142,7 +129,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         }
         if(e.getKeyCode() == KeyEvent.VK_DOWN) {
             newY = currentY + 10;
-<<<<<<< Updated upstream
             gamePiece.player.setLocation(currentX, newY);
         }
         if(e.getKeyCode() == KeyEvent.VK_LEFT){
@@ -152,13 +138,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
             newX = currentX + 10;
             gamePiece.player.setLocation(newX, currentY);
-=======
-            gamePiece.setBounds(100, 100, currentX, newY);
-        }
-        if(e.getKeyCode() == KeyEvent.VK_KP_DOWN) {
-            newY = currentY - 10;
-            gamePiece.setBounds(100, 100, currentX, newY);
->>>>>>> Stashed changes
         }
     }
 
