@@ -33,10 +33,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     JButton fallButton = new JButton("Fall");
     JButton springButton = new JButton("Spring");
     JButton summerButton = new JButton("Summer");
-    Player texter1 = new Player();
-    Player texter2 = new Player();
-    Player average1 = new Player();
-    Player average2 = new Player();
+    Enemy texter1 = new Enemy();
+    Enemy texter2 = new Enemy();
+    Enemy average1 = new Enemy();
+    Enemy average2 = new Enemy();
     Player gamePiece = new Player();
     
     //Constants
@@ -51,6 +51,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         setLayout(null);
         
         sp = new SettingsPanel();
+        gameLoop = new Timer(1000, this);
         
         SUMMER_SEASON = 0;
         SPRING_SEASON = 1;
@@ -69,6 +70,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         STARTING_TIME_IN_MILLISECONDS = 0;
         REFRESH_TIME_IN_MILLISECONDS = 0;
         
+        //Default background
         background = new ImageIcon("images/bg_summer.png");
         background1 = background.getImage();
         
@@ -91,6 +93,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         springButton.setBounds(0, 320, 100, 50);
         summerButton.setBounds(0, 370, 100, 50);
         
+        //Make the play button invisible until the user picks a player.
+        playGame.setVisible(false);
+        
         playGame.addActionListener(this);
         boyButton.addActionListener(this);
         girlButton.addActionListener(this);
@@ -104,58 +109,73 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(background1, 0, 0, this);
-        ImageIcon water = new ImageIcon("images/boy.png");
-        addKeyListener(this);
     }
     
     void startGame(){
         //background = new ImageIcon("images/bg_summer.png");
         //background1 = background.getImage();
+        
+        //Hide the settings buttons
+        playGame.setVisible(false);
+        boyButton.setVisible(false);
+        girlButton.setVisible(false);
+        winterButton.setVisible(false);
+        fallButton.setVisible(false);
+        springButton.setVisible(false);
+        summerButton.setVisible(false);
 
         //starts the gameLoop timer
-        //gameLoop.start();
-        //gameLoop.addActionListener(this);
+        gameLoop.start();
+        gameLoop.addActionListener(this);
         if(currentPlayer == 0){
             gamePiece.image = new ImageIcon("images/boy.png");
             gamePiece.image1 = gamePiece.image.getImage();
             gamePiece.speed = 15;
-            gamePiece.width = 20;
-            gamePiece.height = 15;
+            gamePiece.width = 115;
+            gamePiece.height = 69;
         }else if(currentPlayer == 1){
             gamePiece.image = new ImageIcon("images/girl.png");
             gamePiece.image1 = gamePiece.image.getImage();
             gamePiece.speed = 10;
-            gamePiece.width = 15;
-            gamePiece.height = 10;
+            gamePiece.width = 115;
+            gamePiece.height = 69;
         }
-        gamePiece.player.setBounds(getWidth() / 2, getHeight() - 50, 50, 50);
+        gamePiece.player.setBounds(getWidth() / 2, getHeight() - 50, gamePiece.width, gamePiece.height);
         add(gamePiece.player);
         gamePiece.player.addKeyListener(this);
         gamePiece.player.setFocusable(true);
         
         //adds the first texter obstacle
         texter1.image = new ImageIcon("images/texter.png");
+        texter1.player = new JButton(texter1.image);
         texter1.speed = 15;
-        texter1.width = 20;
-        texter1.height = 15;
+        texter1.width = 117;
+        texter1.height = 70;
+        texter1.player.setBounds(getWidth() - 450, 0, texter1.width, texter1.height);
         add(texter1.player);
         //adds the second texter obstacle
         texter2.image = new ImageIcon("images/texter.png");
+        texter2.player = new JButton(texter2.image);
         texter2.speed = 15;
-        texter2.width = 20;
-        texter2.height = 15;
+        texter2.width = 117;
+        texter2.height = 70;
+        texter2.player.setBounds(getWidth() - texter2.width, getHeight() - 200, texter2.width, texter2.height);
         add(texter2.player);
         //adds the first average obstacle
-        average1.image = new ImageIcon("images/texter.png");
+        average1.image = new ImageIcon("images/average.png");
+        average1.player = new JButton(average1.image);
         average1.speed = 15;
-        average1.width = 20;
-        average1.height = 15;
+        average1.width = 117;
+        average1.height = 71;
+        average1.player.setBounds(getWidth() - average1.width, getHeight() / 3, average1.width, average1.height);
         add(average1.player);
         //adds the second average obstacle
-        average2.image = new ImageIcon("images/texter.png");
+        average2.image = new ImageIcon("images/average.png");
+        average2.player = new JButton(average2.image);
         average2.speed = 15;
-        average2.width = 20;
-        average2.height = 15;
+        average2.width = 117;
+        average2.height = 71;
+        average2.player.setBounds(getWidth() - 700, 0, average2.width, average2.height);
         add(average2.player);
         
         revalidate();
@@ -173,22 +193,22 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         int newX = 0;
         
         if(e.getKeyCode() == KeyEvent.VK_UP) {
-            newY = currentY - 10;
+            newY = currentY - gamePiece.speed;
             System.out.println("up");
             gamePiece.player.setLocation(currentX, newY);
         }
         if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-            newY = currentY + 10;
+            newY = currentY + gamePiece.speed;
             System.out.println("down");
             gamePiece.player.setLocation(currentX, newY);
         }
         if(e.getKeyCode() == KeyEvent.VK_LEFT){
-            newX = currentX - 10;
+            newX = currentX - gamePiece.speed;
             System.out.println("left");
             gamePiece.player.setLocation(newX, currentY);
         }
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            newX = currentX + 10;
+            newX = currentX + gamePiece.speed;
             System.out.println("right");
             gamePiece.player.setLocation(newX, currentY);
         }
@@ -206,15 +226,15 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             startGame();
         }
         if(obj == boyButton){
-            gamePiece = new Player();
+            playGame.setVisible(true);
             gamePiece.image = new ImageIcon("images/boy.png");
-            gamePiece.image1 = gamePiece.image.getImage();
+            gamePiece.player = new JButton(gamePiece.image);
             currentPlayer = 0;
         }
         if(obj == girlButton){
-            gamePiece = new Player();
+            playGame.setVisible(true);
             gamePiece.image = new ImageIcon("images/girl.png");
-            gamePiece.image1 = gamePiece.image.getImage();
+            gamePiece.player = new JButton(gamePiece.image);
             currentPlayer = 1;
         }
         if(obj == winterButton){

@@ -13,7 +13,7 @@ public class Character {
     int speed, x, y, width, height;
     
     public Character(){
-        player = new JButton("Player 1");
+        player = new JButton("Player");
     }
     
     void setImagePath(String path){

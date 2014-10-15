@@ -7,7 +7,7 @@ public class Enemy extends Character{
     
     public Enemy(){
         image = new ImageIcon();
-        player = new JButton();
+        player = new JButton("Enemy");
         speed = 0;
         x = 0;
         y = 0;

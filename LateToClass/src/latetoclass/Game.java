@@ -23,7 +23,7 @@ public class Game extends JFrame{
 	getContentPane().add(gp, "Center");
         getContentPane().add(sp, "South");
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
-	setSize (1024, 860);
+	setSize (1110, 768);
         setVisible(true);
         gp.setFocusable(true);
         

@@ -11,6 +11,7 @@ public class SettingsPanel extends JPanel{
             easyDifficultyButton, mediumDifficultyButton, hardDifficultyButton, 
             boyButton, girlButton;
     JLabel instructionsText;
+    int timerCounter;
     
     public SettingsPanel(){        
         playGame = new JButton("Play");
@@ -20,11 +21,12 @@ public class SettingsPanel extends JPanel{
         fallButton = new JButton("Fall");
         springButton = new JButton("Spring");
         summerButton = new JButton("Summer");
+        timerCounter = 0;
         
-        instructionsText = new JLabel("Select your player and difficulty. "
+        instructionsText = new JLabel("Select player, difficulty, and background. "
                 + "Use the arrow keys to move your character. Avoid other people "
                 + "and texters. Make it to Willard building without embarassing yourself.");
 
-        instructionsText.setBounds(0,750,1024,50);
+        instructionsText.setBounds(0,700,1200,50);
     }
 }
