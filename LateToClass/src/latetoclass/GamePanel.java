@@ -73,13 +73,13 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         if(gf.currentPlayer == 0){
             gamePiece.image = new ImageIcon("images/boy.png");
             gamePiece.image1 = gamePiece.image.getImage();
-            gamePiece.speed = 15;
+            gamePiece.speed = 25;
             gamePiece.width = 65;
             gamePiece.height = 39;
         }else if(gf.currentPlayer == 1){
             gamePiece.image = new ImageIcon("images/girl.png");
             gamePiece.image1 = gamePiece.image.getImage();
-            gamePiece.speed = 10;
+            gamePiece.speed = 15;
             gamePiece.width = 65;
             gamePiece.height = 40;
         }
