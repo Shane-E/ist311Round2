@@ -73,14 +73,14 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             gamePiece.image = new ImageIcon("images/boy.png");
             gamePiece.image1 = gamePiece.image.getImage();
             gamePiece.speed = 15;
-            gamePiece.width = 115;
-            gamePiece.height = 69;
+            gamePiece.width = 65;
+            gamePiece.height = 39;
         }else if(gf.currentPlayer == 1){
             gamePiece.image = new ImageIcon("images/girl.png");
             gamePiece.image1 = gamePiece.image.getImage();
             gamePiece.speed = 10;
-            gamePiece.width = 115;
-            gamePiece.height = 69;
+            gamePiece.width = 65;
+            gamePiece.height = 40;
         }
         gamePiece.player.setBounds(getWidth() / 2, getHeight() - 50, gamePiece.width, gamePiece.height);
         add(gamePiece.player);
@@ -91,33 +91,41 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         texter1.image = new ImageIcon("images/texter.png");
         texter1.player = new JButton(texter1.image);
         texter1.speed = 15;
-        texter1.width = 117;
-        texter1.height = 70;
-        texter1.player.setBounds(getWidth() - 450, 0, texter1.width, texter1.height);
+        texter1.width = 65;
+        texter1.height = 39;
+        texter1.x = getWidth() - 450;
+        texter1.y = 0;
+        texter1.player.setBounds(texter1.x, texter1.y, texter1.width, texter1.height);
         add(texter1.player);
         //adds the second texter obstacle
         texter2.image = new ImageIcon("images/texter.png");
         texter2.player = new JButton(texter2.image);
         texter2.speed = 15;
-        texter2.width = 117;
-        texter2.height = 70;
-        texter2.player.setBounds(getWidth() - texter2.width, getHeight() - 200, texter2.width, texter2.height);
+        texter2.width = 65;
+        texter2.height = 39;
+        texter2.x = getWidth() - texter2.width;
+        texter2.y = getHeight() - 200;
+        texter2.player.setBounds(texter2.x, texter2.y, texter2.width, texter2.height);
         add(texter2.player);
         //adds the first average obstacle
         average1.image = new ImageIcon("images/average.png");
         average1.player = new JButton(average1.image);
         average1.speed = 15;
-        average1.width = 117;
-        average1.height = 71;
-        average1.player.setBounds(getWidth() - average1.width, getHeight() / 3, average1.width, average1.height);
+        average1.width = 65;
+        average1.height = 39;
+        average1.x = getWidth() - average1.width;
+        average1.y = getHeight() / 3;
+        average1.player.setBounds(average1.x, average1.y, average1.width, average1.height);
         add(average1.player);
         //adds the second average obstacle
         average2.image = new ImageIcon("images/average.png");
         average2.player = new JButton(average2.image);
         average2.speed = 15;
-        average2.width = 117;
-        average2.height = 71;
-        average2.player.setBounds(getWidth() - 700, 0, average2.width, average2.height);
+        average2.width = 65;
+        average2.height = 39;
+        average2.x = getWidth() - 700;
+        average2.y = 0;
+        average2.player.setBounds(average2.x, average2.y, average2.width, average2.height);
         add(average2.player);
         
         gamePiece.player.requestFocus();
