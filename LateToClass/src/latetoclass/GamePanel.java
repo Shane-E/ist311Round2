@@ -1,14 +1,15 @@
 package latetoclass;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -39,7 +40,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         setLayout(null);
         gf = game;
         
-        gameLoop = new Timer(1000, this);
+        gameLoop = new Timer(5, this);
   
         STARTING_TIME_IN_MILLISECONDS = 0;
         REFRESH_TIME_IN_MILLISECONDS = 0;
@@ -93,7 +94,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         texter1.speed = 15;
         texter1.width = 65;
         texter1.height = 39;
-        texter1.x = getWidth() - 450;
+        texter1.x = getWidth() - 650;;
         texter1.y = 0;
         texter1.player.setBounds(texter1.x, texter1.y, texter1.width, texter1.height);
         add(texter1.player);
@@ -103,7 +104,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         texter2.speed = 15;
         texter2.width = 65;
         texter2.height = 39;
-        texter2.x = getWidth() - texter2.width;
+        texter2.x = getWidth() - 750;;
         texter2.y = getHeight() - 200;
         texter2.player.setBounds(texter2.x, texter2.y, texter2.width, texter2.height);
         add(texter2.player);
@@ -113,7 +114,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         average1.speed = 15;
         average1.width = 65;
         average1.height = 39;
-        average1.x = getWidth() - average1.width;
+        average1.x = getWidth() - 600;;
         average1.y = getHeight() / 3;
         average1.player.setBounds(average1.x, average1.y, average1.width, average1.height);
         add(average1.player);
@@ -124,7 +125,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         average2.width = 65;
         average2.height = 39;
         average2.x = getWidth() - 700;
-        average2.y = 0;
+        average2.y = 80;
         average2.player.setBounds(average2.x, average2.y, average2.width, average2.height);
         add(average2.player);
         
@@ -174,7 +175,53 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         Object obj = e.getSource();
         
         if(obj == gameLoop){
-            //move texter and average obstacles back and forth
+            //move texter and average obstacles from top to bottom, random x on loop
+            average2.y++;
+            gf.gp.average2.player.setBounds(average2.x, average2.y,average2.width, average2.height);
+            if(average2.y > getHeight())
+            {
+                average2.y = 0;
+                Random rand = new Random();
+                int randomNum = rand.nextInt((700-410)+ 1) + 410;   
+                average2.x = randomNum;
+                
+            }
+            
+            //move texter and average obstacles from top to bottom, random x on loop
+            average1.y++;
+            gf.gp.average1.player.setBounds(average1.x, average1.y,average1.width, average1.height);
+            if(average1.y > getHeight())
+            {
+                average1.y = 0;
+                Random rand = new Random();
+                int randomNum = rand.nextInt((700-410)+ 1) + 410;   
+                average1.x = randomNum;   
+            }
+            
+            //move texter and average obstacles from top to bottom, random x on loop
+            texter2.y++;
+            gf.gp.texter2.player.setBounds(texter2.x, texter2.y,texter2.width, texter2.height);
+            if(texter2.y > getHeight())
+            {
+                texter2.y = 0;
+                Random rand = new Random();
+                int randomNum = rand.nextInt((700-410)+ 1) + 410;   
+                texter2.x = randomNum;
+                
+            }
+           
+            
+            //move texter and average obstacles from top to bottom, random x on loop
+            texter1.y++;
+            gf.gp.texter1.player.setBounds(texter1.x, texter1.y,texter1.width, texter1.height);
+            if(texter1.y > getHeight())
+            {
+                texter1.y = 0;
+                Random rand = new Random();
+                int randomNum = rand.nextInt((700-410)+ 1) + 410;   
+                texter1.x = randomNum;
+                
+            }
             repaint();
         }
     }
