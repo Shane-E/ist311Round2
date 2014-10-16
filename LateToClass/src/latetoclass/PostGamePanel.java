@@ -11,7 +11,7 @@ public class PostGamePanel extends JPanel implements ActionListener{
     ImageIcon background;
     JButton restartButton, changeSettingsButton;
     
-    public PostGamePanel(){
+    public PostGamePanel(Game game){
         
     }
     

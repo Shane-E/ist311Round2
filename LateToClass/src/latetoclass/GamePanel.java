@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener{
-    Game game;
+    Game gf;
     SettingsPanel sp;
     Timer gameLoop;
     int timeLeftInMilliseconds;
@@ -26,33 +26,33 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     Image background1;
     Enemy[] enemiesMovingUp;
     Enemy[] enemiesMovingDown;
-    JButton playGame = new JButton("Play");
-    JButton boyButton = new JButton("Boy");
-    JButton girlButton = new JButton("Girl");
-    JButton winterButton = new JButton("Winter");
-    JButton fallButton = new JButton("Fall");
-    JButton springButton = new JButton("Spring");
-    JButton summerButton = new JButton("Summer");
+    //JButton playGame = new JButton("Play");
+    //JButton boyButton = new JButton("Boy");
+    //JButton girlButton = new JButton("Girl");
+    //JButton winterButton = new JButton("Winter");
+    //JButton fallButton = new JButton("Fall");
+    //JButton springButton = new JButton("Spring");
+    //JButton summerButton = new JButton("Summer");
     Enemy texter1 = new Enemy();
     Enemy texter2 = new Enemy();
     Enemy average1 = new Enemy();
     Enemy average2 = new Enemy();
     Player gamePiece = new Player();
     
-    //Constants
+    /*Constants
     final int WINTER_SEASON, SPRING_SEASON, SUMMER_SEASON, FALL_SEASON, 
             BOY_PLAYER, GIRL_PLAYER, EASY_DIFFICULTY, MEDIUM_DIFFICULTY, 
             HARD_DIFFICULTY;
-    int currentSeason, currentPlayer, currentDifficulty;
+    int currentSeason, currentPlayer, currentDifficulty;*/
     
-    public GamePanel(){
+    public GamePanel(Game game){
         super();
         //gives the panel a null layout so the button can be moved around the screen
         setLayout(null);
+        gf = game;
         
-        sp = new SettingsPanel();
         gameLoop = new Timer(1000, this);
-        
+        /*
         SUMMER_SEASON = 0;
         SPRING_SEASON = 1;
         FALL_SEASON = 2;
@@ -65,8 +65,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         
         //Default Values
         currentPlayer = 0;
-        currentSeason = 0;
-                
+        currentSeason = 0;*/
+  
         STARTING_TIME_IN_MILLISECONDS = 0;
         REFRESH_TIME_IN_MILLISECONDS = 0;
         
@@ -74,35 +74,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         background = new ImageIcon("images/bg_summer.png");
         background1 = background.getImage();
         
-        //Add components to game panel
-        add(sp);
-        add(sp.instructionsText);
-        add(playGame);
-        add(boyButton);
-        add(girlButton);
-        add(winterButton);
-        add(fallButton);
-        add(springButton);
-        add(summerButton);
-
-        playGame.setBounds(0, 70, 100, 50);
-        boyButton.setBounds(0, 120, 100, 50);
-        girlButton.setBounds(0, 170, 100, 50);
-        winterButton.setBounds(0, 220, 100, 50);
-        fallButton.setBounds(0, 270, 100, 50);
-        springButton.setBounds(0, 320, 100, 50);
-        summerButton.setBounds(0, 370, 100, 50);
-        
-        //Make the play button invisible until the user picks a player.
-        playGame.setVisible(false);
-        
-        playGame.addActionListener(this);
-        boyButton.addActionListener(this);
-        girlButton.addActionListener(this);
-        winterButton.addActionListener(this);
-        fallButton.addActionListener(this);
-        springButton.addActionListener(this);
-        summerButton.addActionListener(this);
         repaint();
     }
     
@@ -116,24 +87,24 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         //background1 = background.getImage();
         
         //Hide the settings buttons
-        playGame.setVisible(false);
-        boyButton.setVisible(false);
-        girlButton.setVisible(false);
-        winterButton.setVisible(false);
-        fallButton.setVisible(false);
-        springButton.setVisible(false);
-        summerButton.setVisible(false);
+        gf.sp.playGame.setVisible(false);
+        gf.sp.boyButton.setVisible(false);
+        gf.sp.girlButton.setVisible(false);
+        gf.sp.winterButton.setVisible(false);
+        gf.sp.fallButton.setVisible(false);
+        gf.sp.springButton.setVisible(false);
+        gf.sp.summerButton.setVisible(false);
 
         //starts the gameLoop timer
         gameLoop.start();
         gameLoop.addActionListener(this);
-        if(currentPlayer == 0){
+        if(gf.currentPlayer == 0){
             gamePiece.image = new ImageIcon("images/boy.png");
             gamePiece.image1 = gamePiece.image.getImage();
             gamePiece.speed = 15;
             gamePiece.width = 115;
             gamePiece.height = 69;
-        }else if(currentPlayer == 1){
+        }else if(gf.currentPlayer == 1){
             gamePiece.image = new ImageIcon("images/girl.png");
             gamePiece.image1 = gamePiece.image.getImage();
             gamePiece.speed = 10;
@@ -178,6 +149,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         average2.player.setBounds(getWidth() - 700, 0, average2.width, average2.height);
         add(average2.player);
         
+        gamePiece.player.requestFocus();
         revalidate();
         repaint();
     }
@@ -221,7 +193,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
-        
+        /*
         if(obj == playGame){
             startGame();
         }
@@ -256,7 +228,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             background = new ImageIcon("images/bg_summer.png");
             background1 = background.getImage();
             repaint();
-        }
+        }*/
         if(obj == gameLoop){
             //move texter and average obstacles back and forth
             repaint();
