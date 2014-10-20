@@ -1,9 +1,7 @@
 package latetoclass;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -65,7 +63,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     }
     
     void startGame(){
-        //Hide the settings buttons
+        //Hide the settings buttons and display the score/mistakes
         gf.sp.playGame.setVisible(false);
         gf.sp.boyButton.setVisible(false);
         gf.sp.girlButton.setVisible(false);
@@ -73,7 +71,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         gf.sp.fallButton.setVisible(false);
         gf.sp.springButton.setVisible(false);
         gf.sp.summerButton.setVisible(false);
-
+        gf.sp.scoreLabel.setVisible(true);
+        
         //starts the gameLoop timer
         gameLoop.start();
         gameLoop.addActionListener(this);
@@ -101,7 +100,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         texter1.speed = 15;
         texter1.width = 65;
         texter1.height = 39;
-        texter1.x = getWidth() - 650;;
+        texter1.x = getWidth() - 650;
         texter1.y = 0;
         texter1.player.setBounds(texter1.x, texter1.y, texter1.width, texter1.height);
         add(texter1.player);
@@ -111,7 +110,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         texter2.speed = 15;
         texter2.width = 65;
         texter2.height = 39;
-        texter2.x = getWidth() - 500;;
+        texter2.x = getWidth() - 500;
         texter2.y = getHeight() - 200;
         texter2.player.setBounds(texter2.x, texter2.y, texter2.width, texter2.height);
         add(texter2.player);
@@ -121,7 +120,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         average1.speed = 15;
         average1.width = 65;
         average1.height = 39;
-        average1.x = getWidth() - 600;;
+        average1.x = getWidth() - 600;
         average1.y = getHeight() / 3;
         average1.player.setBounds(average1.x, average1.y, average1.width, average1.height);
         add(average1.player);
@@ -139,6 +138,27 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         gamePiece.player.requestFocus();
         revalidate();
         repaint();
+    }
+    
+    public void restart(){
+        //Clear the GamePanel of all buttons
+        gf.gp.remove(gf.gp.gamePiece.player);
+        gf.gp.remove(gf.gp.average1.player);
+        gf.gp.remove(gf.gp.average2.player);
+        gf.gp.remove(gf.gp.texter1.player);
+        gf.gp.remove(gf.gp.texter2.player);
+        
+        //Display the settings
+        gf.sp.playGame.setVisible(true);
+        gf.sp.boyButton.setVisible(true);
+        gf.sp.girlButton.setVisible(true);
+        gf.sp.winterButton.setVisible(true);
+        gf.sp.fallButton.setVisible(true);
+        gf.sp.springButton.setVisible(true);
+        gf.sp.summerButton.setVisible(true);
+        gf.sp.scoreLabel.setVisible(false);
+        gf.gp.revalidate();
+        gf.gp.repaint();
     }
 
     public void keyTyped(KeyEvent e) {
@@ -313,25 +333,30 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             //if the player reaches Willard building, display dialog box
             if(gamePiece.player.getLocation().x < 410 && gamePiece.player.getLocation().y < 200 && numCollisions < 4)
             {
-            gf.sp.scoreLabel.setText("Winner!");
-            n = JOptionPane.showConfirmDialog(null,
-            "You won! Would you like to play again?",
-            "You have won!",
-            JOptionPane.YES_NO_OPTION);
-            if (n == JOptionPane.YES_OPTION)
-            {
-                //This doesn't work right now, feel free to fix it if you know how
-                System.out.println("YES");
-               
-            }
-            else if(n == JOptionPane.NO_OPTION)
-            {
-                System.out.println("NO");
-                System.exit(0);
-            }
+                gameLoop.stop();
+                gf.sp.scoreLabel.setText("Winner!");
+                n = JOptionPane.showConfirmDialog(null,
+                "You won! Would you like to play again?",
+                "You have won!",
+                JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION)
+                {
+                    //This doesn't work right now, feel free to fix it if you know how
+                    System.out.println("YES This is the winner yes option");
+                    gf.dispose();
+                    app.main(null);
+                    //gf.gp.restart();
+
+                }
+                else if(n == JOptionPane.NO_OPTION)
+                {
+                    System.out.println("NO");
+                    System.exit(0);
+                }
             }
             else if(gamePiece.player.getLocation().x < 410 && gamePiece.player.getLocation().y < 200 && numCollisions >= 4)
             {
+            gameLoop.stop();
             gf.sp.scoreLabel.setText("Loser!");
             n = JOptionPane.showConfirmDialog(null,
             "You lost! Would you like to play again?",

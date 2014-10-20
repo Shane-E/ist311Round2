@@ -41,11 +41,10 @@ public class SettingsPanel extends JPanel implements ActionListener{
         add(springButton);
         add(summerButton);
         add(scoreLabel);
-
-      
         
         //Make the play button invisible until the user picks a player.
         playGame.setVisible(false);
+        scoreLabel.setVisible(false);
         
         playGame.addActionListener(this);
         boyButton.addActionListener(this);
