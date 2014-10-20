@@ -151,7 +151,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         int newY = 0;
         int newX = 0;
         
-        if(e.getKeyCode() == KeyEvent.VK_UP) {
+        if(e.getKeyCode() == KeyEvent.VK_UP && lastMoveCollision == false) {
             newY = currentY - gamePiece.speed;
             //System.out.println("up");
             gamePiece.player.setLocation(currentX, newY);
@@ -227,146 +227,85 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                 int randomNum = rand.nextInt((700-410)+ 1) + 410;   
                 texter1.x = randomNum;
             }
+            
+            //Get minimum and maximum values for collision detection
             int minX = gamePiece.player.getLocation().x-gamePiece.player.getWidth();
             int maxX = gamePiece.player.getLocation().x+ gamePiece.player.getWidth();
-            
             int minY = gamePiece.player.getLocation().y - gamePiece.player.getHeight();
             int maxY = gamePiece.player.getLocation().y+ gamePiece.player.getHeight();
             
+            //If player touches any of the other objects execute this loop
             if((gf.gp.texter1.player.getLocation().x >= minX && 
                 gf.gp.texter1.player.getLocation().x <= maxX && 
                 gf.gp.texter1.player.getLocation().y <= maxY && 
-                gf.gp.texter1.player.getLocation().y >= minY))
-            {
-                /*boolean test = gf.gp.texter1.player.getX() >= minX;
-                boolean test2 = gf.gp.texter1.player.getX() <= maxX;
-                boolean test3 = gf.gp.texter1.player.getY() <= maxY;
-                boolean test4 = gf.gp.texter1.player.getY() >= minY;
-                System.out.println(gf.gp.texter1.player.getX() + ">=" + minX + " " + test);
-                System.out.println(gf.gp.texter1.player.getX() + "<=" + maxX + " " + test2);
-                System.out.println(gf.gp.texter1.player.getY() + ">=" + minY + " " + test3);
-                System.out.println(gf.gp.texter1.player.getY() + "<=" + maxY + " " + test4);
-                
-                System.out.println("Max X: " + maxX);
-                System.out.println("Min X: " + minX);
-                System.out.println("Max Y: " + maxY);
-                System.out.println("Min Y: " + minY);
-                System.out.println("Texter X: " + gf.gp.texter1.player.getX());
-                System.out.println("Texter Y: " + gf.gp.texter1.player.getY());*/
-                System.out.println("Last Move Collision? "+ lastMoveCollision);
-                if(lastMoveCollision == false)
-                {
-                numCollisions += 1;
-                gf.sp.scoreLabel.setText("Collisions: " + numCollisions);
-                }
-                System.out.println("Collision!");
-                gf.sp.scoreLabel.setForeground(Color.red);
-                lastMoveCollision = true;
-                
-                //repaint();
-            }
-            else if((gf.gp.texter2.player.getLocation().x >= minX && 
+                gf.gp.texter1.player.getLocation().y >= minY) || 
+                (gf.gp.average1.player.getLocation().x >= minX && 
+                gf.gp.average1.player.getLocation().x <= maxX && 
+                gf.gp.average1.player.getLocation().y <= maxY && 
+                gf.gp.average1.player.getLocation().y >= minY) || 
+                (gf.gp.average2.player.getLocation().x >= minX && 
+                gf.gp.average2.player.getLocation().x <= maxX && 
+                gf.gp.average2.player.getLocation().y <= maxY && 
+                gf.gp.average2.player.getLocation().y >= minY) || 
+                (gf.gp.texter2.player.getLocation().x >= minX && 
                 gf.gp.texter2.player.getLocation().x <= maxX && 
                 gf.gp.texter2.player.getLocation().y <= maxY && 
                 gf.gp.texter2.player.getLocation().y >= minY))
             {
-                /*boolean test = gf.gp.texter1.player.getX() >= minX;
-                boolean test2 = gf.gp.texter1.player.getX() <= maxX;
-                boolean test3 = gf.gp.texter1.player.getY() <= maxY;
-                boolean test4 = gf.gp.texter1.player.getY() >= minY;
-                System.out.println(gf.gp.texter1.player.getX() + ">=" + minX + " " + test);
-                System.out.println(gf.gp.texter1.player.getX() + "<=" + maxX + " " + test2);
-                System.out.println(gf.gp.texter1.player.getY() + ">=" + minY + " " + test3);
-                System.out.println(gf.gp.texter1.player.getY() + "<=" + maxY + " " + test4);
-                
-                System.out.println("Max X: " + maxX);
-                System.out.println("Min X: " + minX);
-                System.out.println("Max Y: " + maxY);
-                System.out.println("Min Y: " + minY);
-                System.out.println("Texter X: " + gf.gp.texter1.player.getX());
-                System.out.println("Texter Y: " + gf.gp.texter1.player.getY());*/
-                System.out.println("Last Move Collision? "+ lastMoveCollision);
+                //Only add to the number of collisions if the event before was not a collision
                 if(lastMoveCollision == false)
                 {
-                numCollisions += 1;
-                gf.sp.scoreLabel.setText("Collisions: " + numCollisions);
+                    numCollisions += 1;
+                    gf.sp.scoreLabel.setText("Collisions: " + numCollisions);
                 }
-                System.out.println("Collision!");
-                gf.sp.scoreLabel.setForeground(Color.red);
-                lastMoveCollision = true;
                 
-                //repaint();
-            }
-            else if((gf.gp.average1.player.getLocation().x >= minX && 
+                //if you run into an object, make it stop until you move
+                if(gf.gp.texter1.player.getLocation().x >= minX && 
+                gf.gp.texter1.player.getLocation().x <= maxX && 
+                gf.gp.texter1.player.getLocation().y <= maxY && 
+                gf.gp.texter1.player.getLocation().y >= minY)
+                {
+                    texter1.y--;
+                }
+                
+                if(gf.gp.average1.player.getLocation().x >= minX && 
                 gf.gp.average1.player.getLocation().x <= maxX && 
                 gf.gp.average1.player.getLocation().y <= maxY && 
-                gf.gp.average1.player.getLocation().y >= minY))
-            {
-                /*boolean test = gf.gp.texter1.player.getX() >= minX;
-                boolean test2 = gf.gp.texter1.player.getX() <= maxX;
-                boolean test3 = gf.gp.texter1.player.getY() <= maxY;
-                boolean test4 = gf.gp.texter1.player.getY() >= minY;
-                System.out.println(gf.gp.texter1.player.getX() + ">=" + minX + " " + test);
-                System.out.println(gf.gp.texter1.player.getX() + "<=" + maxX + " " + test2);
-                System.out.println(gf.gp.texter1.player.getY() + ">=" + minY + " " + test3);
-                System.out.println(gf.gp.texter1.player.getY() + "<=" + maxY + " " + test4);
-                
-                System.out.println("Max X: " + maxX);
-                System.out.println("Min X: " + minX);
-                System.out.println("Max Y: " + maxY);
-                System.out.println("Min Y: " + minY);
-                System.out.println("Texter X: " + gf.gp.texter1.player.getX());
-                System.out.println("Texter Y: " + gf.gp.texter1.player.getY());*/
-                System.out.println("Last Move Collision? "+ lastMoveCollision);
-                if(lastMoveCollision == false)
+                gf.gp.average1.player.getLocation().y >= minY)
                 {
-                numCollisions += 1;
-                gf.sp.scoreLabel.setText("Collisions: " + numCollisions);
+                    average1.y--;
                 }
-                System.out.println("Collision!");
-                gf.sp.scoreLabel.setForeground(Color.red);
-                lastMoveCollision = true;
                 
-                //repaint();
-            }
-            else if((gf.gp.average2.player.getLocation().x >= minX && 
+                 if(gf.gp.texter2.player.getLocation().x >= minX && 
+                gf.gp.texter2.player.getLocation().x <= maxX && 
+                gf.gp.texter2.player.getLocation().y <= maxY && 
+                gf.gp.texter2.player.getLocation().y >= minY)
+                {
+                    texter2.y--;
+                }
+                
+                if(gf.gp.average2.player.getLocation().x >= minX && 
                 gf.gp.average2.player.getLocation().x <= maxX && 
                 gf.gp.average2.player.getLocation().y <= maxY && 
-                gf.gp.average2.player.getLocation().y >= minY))
-            {
-                /*boolean test = gf.gp.texter1.player.getX() >= minX;
-                boolean test2 = gf.gp.texter1.player.getX() <= maxX;
-                boolean test3 = gf.gp.texter1.player.getY() <= maxY;
-                boolean test4 = gf.gp.texter1.player.getY() >= minY;
-                System.out.println(gf.gp.texter1.player.getX() + ">=" + minX + " " + test);
-                System.out.println(gf.gp.texter1.player.getX() + "<=" + maxX + " " + test2);
-                System.out.println(gf.gp.texter1.player.getY() + ">=" + minY + " " + test3);
-                System.out.println(gf.gp.texter1.player.getY() + "<=" + maxY + " " + test4);
-                
-                System.out.println("Max X: " + maxX);
-                System.out.println("Min X: " + minX);
-                System.out.println("Max Y: " + maxY);
-                System.out.println("Min Y: " + minY);
-                System.out.println("Texter X: " + gf.gp.texter1.player.getX());
-                System.out.println("Texter Y: " + gf.gp.texter1.player.getY());*/
-                System.out.println("Last Move Collision? "+ lastMoveCollision);
-                if(lastMoveCollision == false)
+                gf.gp.average2.player.getLocation().y >= minY)
                 {
-                numCollisions += 1;
-                gf.sp.scoreLabel.setText("Collisions: " + numCollisions);
+                    average2.y--;
                 }
-                System.out.println("Collision!");
-                gf.sp.scoreLabel.setForeground(Color.red);
-                lastMoveCollision = true;
                 
-                //repaint();
+                //Change color of label to red during collision
+                gf.sp.scoreLabel.setForeground(Color.red);
+                //Set last move variable to true so counter doesn't get incremented
+                lastMoveCollision = true;
             }
             else
             {
+               //Set label to black when no collision
                gf.sp.scoreLabel.setForeground(Color.black); 
+               //Let detector know last move was not a collision
                lastMoveCollision = false;
             }
             
+            //if the player reaches Willard building, display dialog box
             if(gamePiece.player.getLocation().x < 410 && gamePiece.player.getLocation().y < 200 && numCollisions < 4)
             {
             gf.sp.scoreLabel.setText("Winner!");
@@ -396,6 +335,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             if (n == JOptionPane.YES_OPTION)
             {
                 System.out.println("YES");
+                gf.dispose();
+                app.main(null);
                
             }
             else if(n == JOptionPane.NO_OPTION)
