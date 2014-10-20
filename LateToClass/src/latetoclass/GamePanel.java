@@ -32,6 +32,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     Enemy average1 = new Enemy();
     Enemy average2 = new Enemy();
     Player gamePiece = new Player();
+    int numCollisions = 0;
     
     public GamePanel(Game game){
         super();
@@ -171,6 +172,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         //Action
     }
     
+    @SuppressWarnings("empty-statement")
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         
@@ -206,11 +208,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                 texter2.y = 0;
                 Random rand = new Random();
                 int randomNum = rand.nextInt((700-410)+ 1) + 410;   
-                texter2.x = randomNum;
-                
+                texter2.x = randomNum;   
             }
            
-            
             //move texter and average obstacles from top to bottom, random x on loop
             texter1.y++;
             gf.gp.texter1.player.setBounds(texter1.x, texter1.y,texter1.width, texter1.height);
@@ -220,8 +220,40 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                 Random rand = new Random();
                 int randomNum = rand.nextInt((700-410)+ 1) + 410;   
                 texter1.x = randomNum;
-                
             }
+            int minX = gamePiece.player.getX();
+            int maxX = gamePiece.player.getX()+ gamePiece.player.getWidth();
+            
+            int minY = gamePiece.player.getY();
+            int maxY = gamePiece.player.getY()+ gamePiece.player.getHeight();
+            
+            if((gf.gp.texter1.player.getX() >= minX && 
+                gf.gp.texter1.player.getX() <= maxX && 
+                gf.gp.texter1.player.getY() <= maxY && 
+                gf.gp.texter1.player.getY() >= minY))
+            {
+                boolean test = gf.gp.texter1.player.getX() >= minX;
+                boolean test2 = gf.gp.texter1.player.getX() <= maxX;
+                boolean test3 = gf.gp.texter1.player.getY() <= maxY;
+                boolean test4 = gf.gp.texter1.player.getY() >= minY;
+                System.out.println(gf.gp.texter1.player.getX() + ">=" + minX + " " + test);
+                System.out.println(gf.gp.texter1.player.getX() + "<=" + maxX + " " + test2);
+                System.out.println(gf.gp.texter1.player.getY() + ">=" + minY + " " + test3);
+                System.out.println(gf.gp.texter1.player.getY() + "<=" + maxY + " " + test4);
+                
+                System.out.println("Max X: " + maxX);
+                System.out.println("Min X: " + minX);
+                System.out.println("Max Y: " + maxY);
+                System.out.println("Min Y: " + minY);
+                System.out.println("Texter X: " + gf.gp.texter1.player.getX());
+                System.out.println("Texter Y: " + gf.gp.texter1.player.getY());
+                
+                numCollisions += 1;
+                System.out.println("Collision!");
+                gf.sp.scoreLabel.setText("Collisions: " + numCollisions);
+                //repaint();
+            }
+            
             repaint();
         }
     }
