@@ -11,7 +11,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
     JButton playGame, winterButton, fallButton, springButton, summerButton, 
             easyDifficultyButton, mediumDifficultyButton, hardDifficultyButton, 
             boyButton, girlButton;
-    JLabel instructionsText, scoreLabel;
+    JLabel instructionsText, scoreLabel, playerX, playerY;
     Game gf;
     int timerCounter;
     
