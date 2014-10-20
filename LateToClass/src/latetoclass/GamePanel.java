@@ -38,6 +38,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     boolean lastMoveCollision = false;
     int n = 3;
     
+    int gameDifficulty = 0;
+    
     public GamePanel(Game game){
         super();
         
@@ -45,7 +47,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         setLayout(null);
         gf = game;
         
-        gameLoop = new Timer(5, this);
+        gameLoop = new Timer(gameDifficulty, this);
   
         STARTING_TIME_IN_MILLISECONDS = 0;
         REFRESH_TIME_IN_MILLISECONDS = 0;
@@ -72,8 +74,15 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         gf.sp.springButton.setVisible(false);
         gf.sp.summerButton.setVisible(false);
         gf.sp.scoreLabel.setVisible(true);
+        gf.sp.easyDifficultyButton.setVisible(false);
+        gf.sp.mediumDifficultyButton.setVisible(false);
+        gf.sp.hardDifficultyButton.setVisible(false);
+        gf.sp.instructionsText.setVisible(false);
+        
         
         //starts the gameLoop timer
+        gameDifficulty = gf.sp.gameDifficulty;
+        gameLoop.setDelay(gameDifficulty);
         gameLoop.start();
         gameLoop.addActionListener(this);
         if(gf.currentPlayer == 0){

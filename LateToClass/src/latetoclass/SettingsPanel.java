@@ -14,6 +14,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
     JLabel instructionsText, scoreLabel, playerX, playerY;
     Game gf;
     int timerCounter;
+    int gameDifficulty = 10;
     
     public SettingsPanel(Game game){
         gf = game;
@@ -27,11 +28,16 @@ public class SettingsPanel extends JPanel implements ActionListener{
         scoreLabel = new JLabel("Collisions: ");
         timerCounter = 0;
         
-        instructionsText = new JLabel("Select player, difficulty, and background. "
-                + "Use the arrow keys to move your character. Avoid other people "
-                + "and texters. Make it to Willard building without embarassing yourself.");
+        easyDifficultyButton = new JButton("Easy");
+        mediumDifficultyButton = new JButton("Medium");
+        hardDifficultyButton = new JButton("Hard");
+        
+        instructionsText = new JLabel("<html><p>Select player, difficulty, and background.<br> "
+                + "Use the arrow keys to move your character. Avoid other people <br> "
+                + "and texters. Make it to Willard building without embarassing yourself.</p></html>");
 
         instructionsText.setBounds(0,700,1200,50);
+        add(instructionsText);
         
         add(playGame);
         add(boyButton);
@@ -41,6 +47,9 @@ public class SettingsPanel extends JPanel implements ActionListener{
         add(springButton);
         add(summerButton);
         add(scoreLabel);
+        add(easyDifficultyButton);
+        add(mediumDifficultyButton);
+        add(hardDifficultyButton);
         
         //Make the play button invisible until the user picks a player.
         playGame.setVisible(false);
@@ -53,11 +62,23 @@ public class SettingsPanel extends JPanel implements ActionListener{
         fallButton.addActionListener(this);
         springButton.addActionListener(this);
         summerButton.addActionListener(this);
+        easyDifficultyButton.addActionListener(this);
+        mediumDifficultyButton.addActionListener(this);
+        hardDifficultyButton.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         
+        if(obj == easyDifficultyButton) {
+            gameDifficulty = 20;
+        }
+        if(obj == mediumDifficultyButton) {
+            gameDifficulty = 15;
+        }
+        if(obj == hardDifficultyButton) {
+            gameDifficulty = 5;
+        }
         if(obj == playGame){
             gf.gp.startGame();
         }
