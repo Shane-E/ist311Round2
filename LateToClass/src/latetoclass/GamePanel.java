@@ -139,27 +139,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         revalidate();
         repaint();
     }
-    
-    public void restart(){
-        //Clear the GamePanel of all buttons
-        gf.gp.remove(gf.gp.gamePiece.player);
-        gf.gp.remove(gf.gp.average1.player);
-        gf.gp.remove(gf.gp.average2.player);
-        gf.gp.remove(gf.gp.texter1.player);
-        gf.gp.remove(gf.gp.texter2.player);
-        
-        //Display the settings
-        gf.sp.playGame.setVisible(true);
-        gf.sp.boyButton.setVisible(true);
-        gf.sp.girlButton.setVisible(true);
-        gf.sp.winterButton.setVisible(true);
-        gf.sp.fallButton.setVisible(true);
-        gf.sp.springButton.setVisible(true);
-        gf.sp.summerButton.setVisible(true);
-        gf.sp.scoreLabel.setVisible(false);
-        gf.gp.revalidate();
-        gf.gp.repaint();
-    }
 
     public void keyTyped(KeyEvent e) {
         //Action
@@ -356,24 +335,24 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             }
             else if(gamePiece.player.getLocation().x < 410 && gamePiece.player.getLocation().y < 200 && numCollisions >= 4)
             {
-            gameLoop.stop();
-            gf.sp.scoreLabel.setText("Loser!");
-            n = JOptionPane.showConfirmDialog(null,
-            "You lost! Would you like to play again?",
-            "You have lost.  You had too many collisions!",
-            JOptionPane.YES_NO_OPTION);
-            if (n == JOptionPane.YES_OPTION)
-            {
-                System.out.println("YES");
-                gf.dispose();
-                app.main(null);
-               
-            }
-            else if(n == JOptionPane.NO_OPTION)
-            {
-                System.out.println("NO");
-                System.exit(0);
-            }    
+                gameLoop.stop();
+                gf.sp.scoreLabel.setText("Loser!");
+                n = JOptionPane.showConfirmDialog(null,
+                "You lost! Would you like to play again?",
+                "You have lost.  You had too many collisions!",
+                JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION)
+                {
+                    System.out.println("YES");
+                    gf.dispose();
+                    app.main(null);
+
+                }
+                else if(n == JOptionPane.NO_OPTION)
+                {
+                    System.out.println("NO");
+                    System.exit(0);
+                }    
             }
             repaint();
         }
