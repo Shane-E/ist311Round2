@@ -9,10 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -34,6 +38,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     Player gamePiece = new Player();
     int numCollisions = 0;
     boolean lastMoveCollision = false;
+    int n = 3;
     
     public GamePanel(Game game){
         super();
@@ -106,7 +111,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         texter2.speed = 15;
         texter2.width = 65;
         texter2.height = 39;
-        texter2.x = getWidth() - 750;;
+        texter2.x = getWidth() - 500;;
         texter2.y = getHeight() - 200;
         texter2.player.setBounds(texter2.x, texter2.y, texter2.width, texter2.height);
         add(texter2.player);
@@ -126,7 +131,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         average2.speed = 15;
         average2.width = 65;
         average2.height = 39;
-        average2.x = getWidth() - 700;
+        average2.x = getWidth() - 500;
         average2.y = 80;
         average2.player.setBounds(average2.x, average2.y, average2.width, average2.height);
         add(average2.player);
@@ -360,8 +365,47 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             {
                gf.sp.scoreLabel.setForeground(Color.black); 
                lastMoveCollision = false;
-            }  
+            }
+            
+            if(gamePiece.player.getLocation().x < 410 && gamePiece.player.getLocation().y < 200 && numCollisions < 4)
+            {
+            gf.sp.scoreLabel.setText("Winner!");
+            n = JOptionPane.showConfirmDialog(null,
+            "You won! Would you like to play again?",
+            "You have won!",
+            JOptionPane.YES_NO_OPTION);
+            if (n == JOptionPane.YES_OPTION)
+            {
+                //This doesn't work right now, feel free to fix it if you know how
+                System.out.println("YES");
+               
+            }
+            else if(n == JOptionPane.NO_OPTION)
+            {
+                System.out.println("NO");
+                System.exit(0);
+            }
+            }
+            else if(gamePiece.player.getLocation().x < 410 && gamePiece.player.getLocation().y < 200 && numCollisions >= 4)
+            {
+            gf.sp.scoreLabel.setText("Loser!");
+            n = JOptionPane.showConfirmDialog(null,
+            "You lost! Would you like to play again?",
+            "You have lost.  You had too many collisions!",
+            JOptionPane.YES_NO_OPTION);
+            if (n == JOptionPane.YES_OPTION)
+            {
+                System.out.println("YES");
+               
+            }
+            else if(n == JOptionPane.NO_OPTION)
+            {
+                System.out.println("NO");
+                System.exit(0);
+            }    
+            }
             repaint();
         }
     }
 }
+

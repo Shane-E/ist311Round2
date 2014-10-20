@@ -42,13 +42,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
         add(summerButton);
         add(scoreLabel);
 
-        playGame.setBounds(0, 70, 100, 50);
-        boyButton.setBounds(0, 120, 100, 50);
-        girlButton.setBounds(0, 170, 100, 50);
-        winterButton.setBounds(0, 220, 100, 50);
-        fallButton.setBounds(0, 270, 100, 50);
-        springButton.setBounds(0, 320, 100, 50);
-        summerButton.setBounds(0, 370, 100, 50);
+      
         
         //Make the play button invisible until the user picks a player.
         playGame.setVisible(false);
