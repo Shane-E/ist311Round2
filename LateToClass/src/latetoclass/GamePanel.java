@@ -163,13 +163,18 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         }
         if(e.getKeyCode() == KeyEvent.VK_LEFT){
             newX = currentX - gamePiece.speed;
-            //System.out.println("left");
-            gamePiece.player.setLocation(newX, currentY);
+            
+            if(newX>390)    {
+                //System.out.println("left");
+                gamePiece.player.setLocation(newX, currentY);
+            }
         }
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
             newX = currentX + gamePiece.speed;
+            if(newX<750)    {
             //System.out.println("right");
             gamePiece.player.setLocation(newX, currentY);
+            }
         }
         this.setFocusable(true);
     }
