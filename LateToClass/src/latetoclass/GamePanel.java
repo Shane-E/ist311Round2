@@ -24,7 +24,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     Timer gameLoop;
     int timeLeftInMilliseconds;
     final int STARTING_TIME_IN_MILLISECONDS, REFRESH_TIME_IN_MILLISECONDS;
-    JLabel timeLeft;
     ImageIcon background;
     Image background1;
     Enemy[] enemiesMovingUp;
@@ -79,8 +78,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         gf.sp.easyDifficultyButton.setVisible(false);
         gf.sp.mediumDifficultyButton.setVisible(false);
         gf.sp.hardDifficultyButton.setVisible(false);
-        gf.sp.instructionsText.setVisible(false);
-        
         
         //starts the gameLoop timer
         gameDifficulty = gf.sp.gameDifficulty;
@@ -339,9 +336,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                 
                 background1 = background.getImage();
                 gf.pgp.setVisible(true);
-                gf.sp.scoreLabel.setText("Winner!");
-                
-            }  
+                gf.sp.scoreLabel.setText("Winner!");                
+            }
             if(numCollisions >= 3)
             {
                 gameLoop.stop();
