@@ -1,5 +1,7 @@
 package latetoclass;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -25,7 +27,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
         fallButton = new JButton("Fall");
         springButton = new JButton("Spring");
         summerButton = new JButton("Summer");
-        scoreLabel = new JLabel("Mistakes Left: ");
+        scoreLabel = new JLabel("Mistakes Left: 5");
         timeLeft = new JLabel("Time Left: ");
         timerCounter = 0;
         
@@ -74,14 +76,17 @@ public class SettingsPanel extends JPanel implements ActionListener{
         if(obj == easyDifficultyButton) {
             gameDifficulty = 20;
             gf.gp.gamePiece.numberOfMistakes = 5;
+            scoreLabel.setText("Mistakes Left: 5");
         }
         if(obj == mediumDifficultyButton) {
             gameDifficulty = 15;
             gf.gp.gamePiece.numberOfMistakes = 3;
+            scoreLabel.setText("Mistakes Left: 3");
         }
         if(obj == hardDifficultyButton) {
             gameDifficulty = 5;
             gf.gp.gamePiece.numberOfMistakes = 1;
+            scoreLabel.setText("Mistakes Left: 1");
         }
         if(obj == playGame){
             gf.gp.startGame();

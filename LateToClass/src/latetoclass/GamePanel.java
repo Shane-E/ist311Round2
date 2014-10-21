@@ -35,8 +35,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     Player gamePiece = new Player();
     int numCollisions = 0;
     boolean lastMoveCollision = false;
-    int n;
-    int k;
    
     int gameDifficulty = 0;
     
@@ -272,12 +270,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                     numCollisions += 1;
                     gf.gp.gamePiece.numberOfMistakes -=1;
                     gf.sp.scoreLabel.setText("Mistakes Left: " + gf.gp.gamePiece.numberOfMistakes);
-                    if(gf.gp.gamePiece.numberOfMistakes == 0)   {
-                        gameLoop.stop();
-                        gf.gp.setVisible(false);
-                        gf.pgp.setVisible(true);
-                        gf.sp.scoreLabel.setText("You Lose");
-                    }
                 }
                 
                 //if you run into an object, make it stop until you move
@@ -327,7 +319,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             }
             
             //if the player reaches Willard building, display dialog box
-            if(gamePiece.player.getLocation().x < 410 && gamePiece.player.getLocation().y < 200 && numCollisions < 4)
+            if(gamePiece.player.getLocation().x < 410 && gamePiece.player.getLocation().y < 200)
             {
                 System.out.println("DIALOG BOX");
                 
@@ -345,11 +337,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                 gf.pgp.setVisible(true);
                 gf.sp.scoreLabel.setText("Winner!");                
             }
-            if(numCollisions >= 3)
+            if(gf.gp.gamePiece.numberOfMistakes == 0)
             {
                 gameLoop.stop();
                 background = new ImageIcon("images/bg_loser.gif");
-                 gf.gp.remove(gf.gp.gamePiece.player);
+                gf.gp.remove(gf.gp.gamePiece.player);
                 gf.gp.remove(gf.gp.average1.player);
                 gf.gp.remove(gf.gp.average2.player);
                 gf.gp.remove(gf.gp.texter1.player);
