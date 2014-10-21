@@ -7,16 +7,27 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class PostGamePanel extends JPanel implements ActionListener{
-    Game game;
+    Game g;
     ImageIcon background;
     JButton restartButton, changeSettingsButton;
     
     public PostGamePanel(Game game){
+        g = game;
+        restartButton = new JButton("Restart");
+        add(restartButton);
+        restartButton.addActionListener(this);
         
     }
     
     public void actionPerformed(ActionEvent e) {
         //Action
+        Object obj = e.getSource();
+        
+        if(obj == restartButton){
+            g.dispose();
+            app.main(null);
+            
+        }
     }
     
 }

@@ -22,11 +22,13 @@ public class Game extends JFrame{
         getContentPane().setLayout(new BorderLayout());
 	getContentPane().add(gp, "Center");
         getContentPane().add(sp, "South");
+        getContentPane().add(pgp, "North");
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setSize (1110, 700);
         setVisible(true);
         setLocationRelativeTo(null);
         gp.setFocusable(true);
+        pgp.setVisible(false);
         
         
         SUMMER_SEASON = 0;

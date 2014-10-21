@@ -36,7 +36,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     Player gamePiece = new Player();
     int numCollisions = 0;
     boolean lastMoveCollision = false;
-    int n = 3;
+    int n;
+    int k;
     
     public GamePanel(Game game){
         super();
@@ -45,7 +46,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         setLayout(null);
         gf = game;
         
-        gameLoop = new Timer(5, this);
+        gameLoop = new Timer(12, this);
   
         STARTING_TIME_IN_MILLISECONDS = 0;
         REFRESH_TIME_IN_MILLISECONDS = 0;
@@ -312,50 +313,17 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             //if the player reaches Willard building, display dialog box
             if(gamePiece.player.getLocation().x < 410 && gamePiece.player.getLocation().y < 200 && numCollisions < 4)
             {
+                System.out.println("DIALOG BOX");
+                
+                
                 gameLoop.stop();
+                gf.gp.setVisible(false);
+                gf.pgp.setVisible(true);
                 gf.sp.scoreLabel.setText("Winner!");
-                n = JOptionPane.showConfirmDialog(null,
-                "You won! Would you like to play again?",
-                "You have won!",
-                JOptionPane.YES_NO_OPTION);
-                if (n == JOptionPane.YES_OPTION)
-                {
-                    //This doesn't work right now, feel free to fix it if you know how
-                    System.out.println("YES This is the winner yes option");
-                    gf.dispose();
-                    app.main(null);
-                    //gf.gp.restart();
-
-                }
-                else if(n == JOptionPane.NO_OPTION)
-                {
-                    System.out.println("NO");
-                    System.exit(0);
-                }
-            }
-            else if(gamePiece.player.getLocation().x < 410 && gamePiece.player.getLocation().y < 200 && numCollisions >= 4)
-            {
-                gameLoop.stop();
-                gf.sp.scoreLabel.setText("Loser!");
-                n = JOptionPane.showConfirmDialog(null,
-                "You lost! Would you like to play again?",
-                "You have lost.  You had too many collisions!",
-                JOptionPane.YES_NO_OPTION);
-                if (n == JOptionPane.YES_OPTION)
-                {
-                    System.out.println("YES");
-                    gf.dispose();
-                    app.main(null);
-
-                }
-                else if(n == JOptionPane.NO_OPTION)
-                {
-                    System.out.println("NO");
-                    System.exit(0);
-                }    
-            }
+            }  
             repaint();
         }
     }
-}
+    }
+
 
