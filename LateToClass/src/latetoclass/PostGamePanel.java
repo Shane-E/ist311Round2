@@ -9,13 +9,16 @@ import javax.swing.JPanel;
 public class PostGamePanel extends JPanel implements ActionListener{
     Game g;
     ImageIcon background;
-    JButton restartButton, changeSettingsButton;
+    JButton restartButton, closeButton;
     
     public PostGamePanel(Game game){
         g = game;
         restartButton = new JButton("Restart");
+        closeButton = new JButton("Close");
         add(restartButton);
+        add(closeButton);
         restartButton.addActionListener(this);
+        closeButton.addActionListener(this);
         
     }
     
@@ -25,9 +28,12 @@ public class PostGamePanel extends JPanel implements ActionListener{
         
         if(obj == restartButton){
             g.dispose();
-            app.main(null);
-            
+            app.main(null);  
+        }
+        if(obj == closeButton){
+            System.exit(0);
+        }
         }
     }
     
-}
+

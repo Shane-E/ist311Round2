@@ -329,10 +329,34 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                 
                 
                 gameLoop.stop();
-                gf.gp.setVisible(false);
+                background = new ImageIcon("images/bg_winner.gif");
+                gf.gp.remove(gf.gp.gamePiece.player);
+                gf.gp.remove(gf.gp.average1.player);
+                gf.gp.remove(gf.gp.average2.player);
+                gf.gp.remove(gf.gp.texter1.player);
+                gf.gp.remove(gf.gp.texter2.player);
+                
+                
+                background1 = background.getImage();
                 gf.pgp.setVisible(true);
                 gf.sp.scoreLabel.setText("Winner!");
+                
             }  
+            if(numCollisions >= 3)
+            {
+                gameLoop.stop();
+                background = new ImageIcon("images/bg_loser.gif");
+                 gf.gp.remove(gf.gp.gamePiece.player);
+                gf.gp.remove(gf.gp.average1.player);
+                gf.gp.remove(gf.gp.average2.player);
+                gf.gp.remove(gf.gp.texter1.player);
+                gf.gp.remove(gf.gp.texter2.player);
+                
+                background1 = background.getImage();
+                gf.pgp.setVisible(true);
+                gf.sp.scoreLabel.setText("Loser!");
+                
+            }
             repaint();
         }
     }
