@@ -24,7 +24,7 @@ public class Game extends JFrame{
         getContentPane().add(sp, "South");
         getContentPane().add(pgp, "North");
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
-	setSize (1110, 700);
+	setSize (1225, 700);
         setVisible(true);
         setLocationRelativeTo(null);
         gp.setFocusable(true);
