@@ -11,7 +11,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
     JButton playGame, winterButton, fallButton, springButton, summerButton, 
             easyDifficultyButton, mediumDifficultyButton, hardDifficultyButton, 
             boyButton, girlButton;
-    JLabel instructionsText, scoreLabel, playerX, playerY;
+    JLabel instructionsText, scoreLabel, timeLeft;
     Game gf;
     int timerCounter;
     int gameDifficulty = 10;
@@ -26,6 +26,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
         springButton = new JButton("Spring");
         summerButton = new JButton("Summer");
         scoreLabel = new JLabel("Collisions: ");
+        timeLeft = new JLabel("Time Left: ");
         timerCounter = 0;
         
         easyDifficultyButton = new JButton("Easy");
