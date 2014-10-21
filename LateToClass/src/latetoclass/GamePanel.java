@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     boolean lastMoveCollision = false;
     int n;
     int k;
-    
+   
     int gameDifficulty = 0;
     
     public GamePanel(Game game){
@@ -270,7 +270,14 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                 if(lastMoveCollision == false)
                 {
                     numCollisions += 1;
-                    gf.sp.scoreLabel.setText("Collisions: " + numCollisions);
+                    gf.gp.gamePiece.numberOfMistakes -=1;
+                    gf.sp.scoreLabel.setText("Mistakes Left: " + gf.gp.gamePiece.numberOfMistakes);
+                    if(gf.gp.gamePiece.numberOfMistakes == 0)   {
+                        gameLoop.stop();
+                        gf.gp.setVisible(false);
+                        gf.pgp.setVisible(true);
+                        gf.sp.scoreLabel.setText("You Lose");
+                    }
                 }
                 
                 //if you run into an object, make it stop until you move

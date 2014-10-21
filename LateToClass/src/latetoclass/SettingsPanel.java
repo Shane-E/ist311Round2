@@ -25,7 +25,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
         fallButton = new JButton("Fall");
         springButton = new JButton("Spring");
         summerButton = new JButton("Summer");
-        scoreLabel = new JLabel("Collisions: ");
+        scoreLabel = new JLabel("Mistakes Left: ");
         timeLeft = new JLabel("Time Left: ");
         timerCounter = 0;
         
@@ -73,12 +73,15 @@ public class SettingsPanel extends JPanel implements ActionListener{
         
         if(obj == easyDifficultyButton) {
             gameDifficulty = 20;
+            gf.gp.gamePiece.numberOfMistakes = 5;
         }
         if(obj == mediumDifficultyButton) {
             gameDifficulty = 15;
+            gf.gp.gamePiece.numberOfMistakes = 3;
         }
         if(obj == hardDifficultyButton) {
             gameDifficulty = 5;
+            gf.gp.gamePiece.numberOfMistakes = 1;
         }
         if(obj == playGame){
             gf.gp.startGame();

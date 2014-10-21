@@ -7,7 +7,7 @@ public class Player extends Character{
     int numberOfMistakes;
     
     public Player(){
-        numberOfMistakes = 0;
+        numberOfMistakes = 5;
         
     }
     
