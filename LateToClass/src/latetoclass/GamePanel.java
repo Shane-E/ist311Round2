@@ -78,7 +78,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         gf.sp.easyDifficultyButton.setVisible(false);
         gf.sp.mediumDifficultyButton.setVisible(false);
         gf.sp.hardDifficultyButton.setVisible(false);
-        gf.sp.instructionsText.setVisible(false);
         
         //starts the gameLoop timer
         gameDifficulty = gf.sp.gameDifficulty;
