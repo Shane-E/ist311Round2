@@ -171,7 +171,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         if(e.getKeyCode() == KeyEvent.VK_LEFT){
             newX = currentX - gamePiece.speed;
             
-            if(newX>390)    {
+            if(newX>385)    {
                 //System.out.println("left");
                 gamePiece.player.setLocation(newX, currentY);
             }
