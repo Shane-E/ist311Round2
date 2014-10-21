@@ -3,6 +3,7 @@ package latetoclass;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.UIManager;
 
 public class Game extends JFrame{
     final int WINTER_SEASON, SPRING_SEASON, SUMMER_SEASON, FALL_SEASON, 
@@ -15,6 +16,16 @@ public class Game extends JFrame{
     
     public Game(){
         super("Late To Class");
+        
+        //Fixes issues with mac displaying background colors.
+            try 
+            {
+                UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
+            }catch (Exception e) 
+            {
+                e.printStackTrace();
+            }
+        
         gp = new GamePanel(this);
         pgp = new PostGamePanel(this);
         sp = new SettingsPanel(this);
