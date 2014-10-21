@@ -35,8 +35,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
     Player gamePiece = new Player();
     int numCollisions = 0;
     boolean lastMoveCollision = false;
-    int n;
-    int k;
    
     int gameDifficulty = 0;
     
@@ -272,7 +270,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                     numCollisions += 1;
                     gf.gp.gamePiece.numberOfMistakes -=1;
                     gf.sp.scoreLabel.setText("Mistakes Left: " + gf.gp.gamePiece.numberOfMistakes);
-                    
+
                 }
                 
                 //if you run into an object, make it stop until you move

@@ -1,5 +1,6 @@
 package latetoclass;
 
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +16,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
     JLabel instructionsText, scoreLabel, timeLeft;
     Game gf;
     int timerCounter;
-    int gameDifficulty = 10;
+    int gameDifficulty = 20;
     
     public SettingsPanel(Game game){
         gf = game;
@@ -26,7 +27,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
         fallButton = new JButton("Fall");
         springButton = new JButton("Spring");
         summerButton = new JButton("Summer");
-        scoreLabel = new JLabel("Mistakes Left: ");
+        scoreLabel = new JLabel("Mistakes Left: 5");
         timeLeft = new JLabel("Time Left: ");
         timerCounter = 0;
         
@@ -100,6 +101,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
         if(obj == easyDifficultyButton) {
             gameDifficulty = 20;
             gf.gp.gamePiece.numberOfMistakes = 5;
+
             if(mediumDifficultyButton.getBackground().equals(Color.RED) || hardDifficultyButton.getBackground().equals(Color.RED))
             {
             easyDifficultyButton.setBackground(Color.RED);
@@ -110,10 +112,13 @@ public class SettingsPanel extends JPanel implements ActionListener{
             {
             easyDifficultyButton.setBackground(Color.RED);
             }
+            scoreLabel.setText("Mistakes Left: 5");
+
         }
         if(obj == mediumDifficultyButton) {
             gameDifficulty = 15;
             gf.gp.gamePiece.numberOfMistakes = 3;
+
             if(easyDifficultyButton.getBackground().equals(Color.RED) || hardDifficultyButton.getBackground().equals(Color.RED))
             {
             mediumDifficultyButton.setBackground(Color.RED);
@@ -124,10 +129,14 @@ public class SettingsPanel extends JPanel implements ActionListener{
             {
             mediumDifficultyButton.setBackground(Color.RED);
             }
+
+            scoreLabel.setText("Mistakes Left: 3");
+
         }
         if(obj == hardDifficultyButton) {
             gameDifficulty = 5;
             gf.gp.gamePiece.numberOfMistakes = 1;
+
             if(mediumDifficultyButton.getBackground().equals(Color.RED) || easyDifficultyButton.getBackground().equals(Color.RED))
             {
             hardDifficultyButton.setBackground(Color.RED);
@@ -138,6 +147,9 @@ public class SettingsPanel extends JPanel implements ActionListener{
             {
             hardDifficultyButton.setBackground(Color.RED);
             }
+
+            scoreLabel.setText("Mistakes Left: 1");
+
         }
         if(obj == playGame){
             gf.gp.startGame();
