@@ -116,7 +116,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
 
         }
         if(obj == mediumDifficultyButton) {
-            gameDifficulty = 15;
+            gameDifficulty = 10;
             gf.gp.gamePiece.numberOfMistakes = 3;
 
             if(easyDifficultyButton.getBackground().equals(Color.RED) || hardDifficultyButton.getBackground().equals(Color.RED))
