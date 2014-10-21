@@ -16,7 +16,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
     JLabel instructionsText, scoreLabel, timeLeft;
     Game gf;
     int timerCounter;
-    int gameDifficulty = 10;
+    int gameDifficulty = 20;
     
     public SettingsPanel(Game game){
         gf = game;
