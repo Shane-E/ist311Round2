@@ -99,7 +99,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
         Object obj = e.getSource();
         
         if(obj == easyDifficultyButton) {
-            gameDifficulty = 20;
+            gameDifficulty = 15;
             gf.gp.gamePiece.numberOfMistakes = 5;
 
             if(mediumDifficultyButton.getBackground().equals(Color.RED) || hardDifficultyButton.getBackground().equals(Color.RED))
