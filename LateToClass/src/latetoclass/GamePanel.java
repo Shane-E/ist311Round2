@@ -322,9 +322,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             //if the player reaches Willard building, display dialog box
             if(gamePiece.player.getLocation().x < 410 && gamePiece.player.getLocation().y < 200)
             {
-                System.out.println("DIALOG BOX");
-                
-                
                 gameLoop.stop();
                 background = new ImageIcon("images/bg_winner.gif");
                 gf.gp.remove(gf.gp.gamePiece.player);
