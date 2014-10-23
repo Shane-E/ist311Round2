@@ -99,7 +99,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
         Object obj = e.getSource();
         
         if(obj == easyDifficultyButton) {
-            gameDifficulty = 15;
+            //gameDifficulty = 15;
             gf.gp.gamePiece.numberOfMistakes = 5;
 
             if(mediumDifficultyButton.getBackground().equals(Color.RED) || hardDifficultyButton.getBackground().equals(Color.RED))
@@ -116,7 +116,11 @@ public class SettingsPanel extends JPanel implements ActionListener{
 
         }
         if(obj == mediumDifficultyButton) {
-            gameDifficulty = 10;
+            //gameDifficulty = 10;
+            gf.gp.texter1.speed = 2;
+            gf.gp.texter2.speed = 3;
+            gf.gp.average1.speed = 4;
+            gf.gp.average2.speed =6;
             gf.gp.gamePiece.numberOfMistakes = 3;
 
             if(easyDifficultyButton.getBackground().equals(Color.RED) || hardDifficultyButton.getBackground().equals(Color.RED))
@@ -134,7 +138,11 @@ public class SettingsPanel extends JPanel implements ActionListener{
 
         }
         if(obj == hardDifficultyButton) {
-            gameDifficulty = 5;
+            //gameDifficulty = 5;
+            gf.gp.texter1.speed = 3;
+            gf.gp.texter2.speed = 4;
+            gf.gp.average1.speed = 5;
+            gf.gp.average2.speed =8;
             gf.gp.gamePiece.numberOfMistakes = 1;
 
             if(mediumDifficultyButton.getBackground().equals(Color.RED) || easyDifficultyButton.getBackground().equals(Color.RED))

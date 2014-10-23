@@ -84,7 +84,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         if(gf.currentPlayer == 0){
             gamePiece.image = new ImageIcon("images/boy.png");
             gamePiece.image1 = gamePiece.image.getImage();
-            gamePiece.speed = 25;
+            gamePiece.speed = 20;
             gamePiece.width = 65;
             gamePiece.height = 39;
         }else if(gf.currentPlayer == 1){
@@ -102,7 +102,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         //adds the first texter obstacle
         texter1.image = new ImageIcon("images/texter.png");
         texter1.player = new JButton(texter1.image);
-        texter1.speed = 15;
+        texter1.speed = 1;
         texter1.width = 65;
         texter1.height = 39;
         texter1.x = getWidth() - 650;
@@ -112,7 +112,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         //adds the second texter obstacle
         texter2.image = new ImageIcon("images/texter.png");
         texter2.player = new JButton(texter2.image);
-        texter2.speed = 15;
+        texter2.speed = 2;
         texter2.width = 65;
         texter2.height = 39;
         texter2.x = getWidth() - 500;
@@ -122,7 +122,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         //adds the first average obstacle
         average1.image = new ImageIcon("images/average.png");
         average1.player = new JButton(average1.image);
-        average1.speed = 15;
+        average1.speed = 3;
         average1.width = 65;
         average1.height = 39;
         average1.x = getWidth() - 600;
@@ -132,7 +132,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         //adds the second average obstacle
         average2.image = new ImageIcon("images/average.png");
         average2.player = new JButton(average2.image);
-        average2.speed = 15;
+        average2.speed = 4;
         average2.width = 65;
         average2.height = 39;
         average2.x = getWidth() - 500;
@@ -195,7 +195,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         
         if(obj == gameLoop){
             //move texter and average obstacles from top to bottom, random x on loop
-            average2.y++;
+            average2.y+= average2.speed;
             gf.gp.average2.player.setBounds(average2.x, average2.y,average2.width, average2.height);
             if(average2.y > getHeight())
             {
@@ -207,7 +207,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             }
             
             //move texter and average obstacles from top to bottom, random x on loop
-            average1.y++;
+            average1.y+= average1.speed;
             gf.gp.average1.player.setBounds(average1.x, average1.y,average1.width, average1.height);
             if(average1.y > getHeight())
             {
@@ -218,7 +218,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             }
             
             //move texter and average obstacles from top to bottom, random x on loop
-            texter2.y++;
+            texter2.y+= texter2.speed;
             gf.gp.texter2.player.setBounds(texter2.x, texter2.y,texter2.width, texter2.height);
             if(texter2.y > getHeight())
             {
@@ -229,7 +229,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             }
            
             //move texter and average obstacles from top to bottom, random x on loop
-            texter1.y++;
+            texter1.y+= texter1.speed;
             gf.gp.texter1.player.setBounds(texter1.x, texter1.y,texter1.width, texter1.height);
             if(texter1.y > getHeight())
             {
@@ -278,7 +278,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                 gf.gp.texter1.player.getLocation().y <= maxY && 
                 gf.gp.texter1.player.getLocation().y >= minY)
                 {
-                    texter1.y--;
+                    texter1.y-= texter1.speed;
                 }
                 
                 if(gf.gp.average1.player.getLocation().x >= minX && 
@@ -286,7 +286,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                 gf.gp.average1.player.getLocation().y <= maxY && 
                 gf.gp.average1.player.getLocation().y >= minY)
                 {
-                    average1.y--;
+                    average1.y-= average1.speed;
                 }
                 
                  if(gf.gp.texter2.player.getLocation().x >= minX && 
@@ -294,7 +294,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                 gf.gp.texter2.player.getLocation().y <= maxY && 
                 gf.gp.texter2.player.getLocation().y >= minY)
                 {
-                    texter2.y--;
+                    texter2.y-= texter2.speed;
                 }
                 
                 if(gf.gp.average2.player.getLocation().x >= minX && 
@@ -302,7 +302,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                 gf.gp.average2.player.getLocation().y <= maxY && 
                 gf.gp.average2.player.getLocation().y >= minY)
                 {
-                    average2.y--;
+                    average2.y-= average2.speed;
                 }
                 
                 //Change color of label to red during collision
